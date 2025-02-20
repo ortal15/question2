@@ -1,0 +1,74 @@
+א. חשב את הרווח השנתי הכולל (revenue (לכל שנה בתעשיית הסרטים:
+
+SELECT AVG(revenue)
+FROM movies
+GROUP BY year ;
+
+ב. ספר את מספר הסרטים הקיימים לכל שפה:
+
+SELECT   language ,count(*)
+from movies
+GROUP by language;
+
+ג. מצא את ממוצע הרווחים (revenue (לכל ז'אנר (GENRE(:
+
+SELECT genre , AVG(revenue)
+from movies
+GROUP by genre;
+
+ד. מצא את ממוצע הרווחים (revenue (לכל ז'אנר (GENRE (לכל שפה בנפרד:
+
+SELECT language , genre , AVG(revenue)
+from movies
+GROUP by genre , language;
+
+ה. הצג את כל השפות שבהן יש לפחות 3 סרטים:
+
+SELECT language, COUNT(language)
+FROM movies
+GROUP BY language
+HAVING COUNT(language) >= 3;
+
+ו. מצא את המדינה שיש לה את מספר הסרטים הגבוה ביותר
+רמז: מיין את הרשימה מהמספר הגבוה לנמוך ובחר את הראשון:
+
+SELECT country
+FROM movies
+GROUP BY country
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
+ז. הצג את מספר הסרטים שיש לכל ז'אנר בתעשייה:
+
+SELECT  genre ,count(*)
+from movies
+GROUP by genre;
+
+ח. מצא את ממוצע הרווחים לכל ז'אנר, מופרד לפי שפה:
+
+SELECT language , genre , AVG(revenue)
+from movies
+GROUP by genre , language;
+
+ט. הצג את כל השנים שבהן סך הרווחים היה גבוה מ- 1,000:
+
+SELECT year , sum(revenue)
+from movies
+GROUP by year
+HAVING sum(revenue)>1000;
+
+י. מצא את השפה שבה יש את מספר הסרטים הנמוך ביותר
+רמז: מיין מהמספר הנמוך לגבוה ובחר את הראשון:
+
+SELECT language
+FROM movies
+GROUP BY language
+ORDER BY COUNT(*) ASC
+LIMIT 1;
+
+יא. הצג את כל הז'אנרים שבהם יש יותר מ- 2 סרטים:
+
+SELECT  genre ,count(*)
+from movies
+GROUP by genre
+HAVING count(genre) >= 2;
